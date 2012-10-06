@@ -1,0 +1,180 @@
+<div style="width:inherit;">
+	<fieldset>
+		<?php
+		$html_title = '';
+		foreach($la_fs_title as $key=>$value){
+			if($value['param_name']=='t_size'){
+				$title_size = 'size="1"';
+				$title_font = 'px';
+			}else{
+				$title_size = '';
+				$title_font = '';
+			}
+			$html_title .= '<div class="lafs_options_box_fs_control">';
+			$html_title .= '<label style="display:block;" for="'.$value['option_name'].'">'.$value['field_name'].'</label>' ;
+			$html_title .= '<input type="text" id="'.$value['option_name'].'" '.$title_size.' name="'.$value['option_name'].'" value="'.${$key}.'" />'.$title_font; 
+			$html_title .= '</div>';
+		}
+		echo $html_title;
+		?>
+	</fieldset>
+    <fieldset>
+    	<!-- Display all the options hrere -->
+      	<?php 
+      	$i = 1;
+      	foreach($la_options_fs as $key=>$value) {
+      		$la_defaut = '';
+            if(lafs_endsWith($key, 'display_widget')) {
+      			continue;
+      		}
+      		$this_value = $value[option_name];
+      		if($value['field_type'] == 'checkbox')  {
+      			$this_value = '1';
+      			$disabled ="checked='checked'" ."disabled='disabled'".'style="width:10px!important;"';
+      			$lafs_default = '<div class="lafs_options_box_helper">displayed by default.</div>';
+      		} else {
+      			$this_value = '';
+      			$disabled = ''; 
+      			$lafs_default = '';
+      		}
+      		$this_div_class = 'lafs_options_box_fs_control';
+            if($i == count($la_options_fs)) {
+            	$this_div_class = 'lafs_options_box_fs_control';
+            }
+  			$html   = '<div class="'.$this_div_class.'">';
+            $html  .= '<div class="la_options_box_option_title"><label for="'.$value[option_name].'" >'.${'icon_'.$value['field_icon']}.'&nbsp;&nbsp;'.$value['field_name'].'</label></div>';
+  			$this_input_class = 'la_options_box_option_sub_box_cb';
+            if($value['field_type'] == 'text') {
+                $this_input_class = '';
+            }
+            $html .= '<div class="la_options_box_option_sub_box">';
+    		$html .= '<div class="'.$this_input_class.'"><input type="'.$value['field_type'].'" name="'.$value[option_name].'" '.$disabled.'id="'.$value[option_name].'" value="'.${$key}.'" /></div>';
+            $html .= $lafs_default.'<div class="la_clear"></div></div>';
+  			$html .= '</div>';
+  			echo $html;
+  			$i++;
+      	}
+      	?>
+   	</fieldset>
+    <!-- Color optioms-->
+    <fieldset>
+      	<!-- Display all color options hrere -->
+      	<?php
+      	$i = 1;
+		foreach($la_options_widget_color as $key=>$value){
+			$this_div_class = 'lafs_options_box_fs_control';
+            if($i == count($la_options_widget_color)) {
+            	$this_div_class = 'lafs_options_box_fs_control';	
+            }
+			if(strstr($key,'color')){
+				$html_color .= '<div class="'.$this_div_class.'">';
+				$html_color .= '<div class="lafs_color_label_box"><label class="lafs_color_label" for="'.$value[option_name].'">'.$value['field_name'].'</label></div>';
+				$html_color .= '<div class="la_clear">&nbsp;</div>';
+				$html_color .= '<div class="lafs_color_play_box"><input class="lafs_color_play" type="text" name="'.$value[option_name].'" id="'.$value[option_name].'" value="'.${$key}.'" /></div>';
+				$html_color .= '<div class="lafs_color_change_box"><div class="lafs_color_change" style="background:'.${$key}.';" id="'.$value[option_name].'_span">&nbsp;</div></div>';
+				$html_color .= '<div class="la_clear">&nbsp;</div>';
+				$html_color .= '</div>';
+			} else {
+				$html_size .= '<div class="'.$this_div_class.'">';
+				$html_size .= '<div class="lafs_color_label_box"><label class="lafs_color_label" for="'.$value[option_name].'">'.$value['field_name'].'</label></div>';
+				$html_size .= '<div class="la_clear">&nbsp;</div>';
+				$html_size .= '<div class="laehco_fs_color_play_box">';
+			 	if($value["field_type"]=="select"){
+					$html_size .= '<select name="'.$value[option_name].'" id="'.$value[option_name].'">';
+					foreach($value['field_options'] as $value) {
+						if($value == $la_opt_fs_size) {
+							$html_size .= '<option value="'.$value.'" selected="selected">'.$value.'px</option>';	
+						} else {
+							$html_size .= '<option value="'.$value.'">'.$value.'px</option>';
+						}
+					}			    
+					$html_size .= ' </select></div>';
+				} else{
+					$html_size .= '<div class="laehco_fs_color_play_box"><input  type="text" size="4" name="'.$value[option_name].'" id="'.$value[option_name].'" value="'.${$key}.'" />px.</div>';
+				}
+				$html_size .= '<div class="la_clear">&nbsp;</div>';
+				$html_size .= '</div>';
+		 	}	
+		 	$i++;
+		 }	
+		 echo $html_color;
+		 echo $html_size;
+		?>
+	</fieldset>
+    <fieldset>
+    	<!--Google Plus -->
+      	<div class="lafs_lang" ><label  for="la-html-widget-lang-googleplus"><?php _e("Google Plus language options"); ?></label><br /></div>
+        <div class="lafs_options_box_fs_control">
+	        <select name="la-html-widget-lang-googleplus" id="la-html-widget-lang-googleplus">
+	            <?php
+	                $langs = lafs_googleplus_langs();
+	                asort($langs);
+	                foreach($langs as $key=>$val) {
+	                    if($la_opt_lang_googleplus == $key) {
+	                        echo '<option value="'.htmlentities($key).'" selected>'.htmlentities($val).'</option>';
+	                    } else{
+	                        echo '<option value="'.htmlentities($key).'">'.htmlentities($val).'</option>';
+	                    }
+	                }
+	            ?>
+	        </select>
+        </div>
+    	<!-- facebook -->
+        <div class="lafs_lang"><label for="la-html-widget-lang-facebooklike"><?php _e("Facebook language options"); ?></label><br /></div>
+        <div class="lafs_options_box_fs_control">
+	        <select name="la-html-widget-lang-facebooklike" id="la-html-widget-lang-facebooklike">
+	            <?php
+	                $langs = lafs_fb_langs();
+	                asort($langs);
+	                foreach($langs as $key=>$val) {
+	                    if($la_opt_lang_facebooklike == $key) {
+	                        echo '<option value="'.htmlentities($key).'" selected>'.htmlentities($val).'</option>';
+	                    } else{
+	                        echo '<option value="'.htmlentities($key).'">'.htmlentities($val).'</option>';
+	                    }
+	                }
+	            ?>
+	        </select>
+        </div>
+		<!-- twitter -->
+        <div class="lafs_lang"><label for="la-html-widget-lang-twitter"><?php _e("Twitter language options"); ?></label><br /></div>
+        <div class="lafs_options_box_fs_control">
+	        <select name="la-html-widget-lang-twitter" id="la-html-widget-lang-twitter">
+	            <?php
+	                $langs = lafs_twitter_langs();
+	                asort($langs);
+	                foreach($langs as $key=>$val) {
+	                    if($la_opt_lang_twitter == $key) {
+	                        echo '<option value="'.htmlentities($key).'" selected>'.htmlentities($val).'</option>';
+	                    } else{
+	                        echo '<option value="'.htmlentities($key).'">'.htmlentities($val).'</option>';
+	                    }
+	                }
+	            ?>
+	        </select>
+        </div>
+        <div class="lafs_lang"><label for="la-html-widget-lang-xing"><?php _e("Xing language options"); ?></label><br /></div>
+        <div class="lafs_options_box_fs_control">
+	        <select name="la-html-widget-lang-xing" id="la-html-widget-lang-xing">
+	            <?php
+	               foreach($lafs_options_language as $key=>$value){
+	               	 if($value['param_name']=='xinglang'){
+	               		$xing_lang_option='';
+	               		foreach($value['field_options'] as $keys=>$values)
+	               		{
+	               			if(${$key}==$keys)
+	               			{
+	               				$xing_lang_option .= '<option value="'.$keys.'" selected="selected">'.$values.'</option> ';
+	               			}else{
+	               				$xing_lang_option .= '<option value="'.$keys.'">'.$values. '</option>';
+	               			}
+	               		}
+	               	 }
+	               	 echo $xing_lang_option; 
+	               }
+	            ?>
+	        </select>
+        </div>
+    </fieldset>
+    <input type="hidden" name="lafs_options_main" id="lafs_options_main" value="true" />
+</div>
