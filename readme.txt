@@ -1,6 +1,6 @@
 === Plugin Name ===
 
-Contributors: LinksAlpha
+Contributors: vivekpuri
 Tags: facebook, facebook like, twitter, twitter button, twitter follow, googleplus, google plus, +1, pinterest, stumbleupon, stumble, foursquare, rss, YouTube, youtube channel, xing, linkedin, follow, follow and subscribe, share, social
 Requires at least: 2.0.2
 Tested up to: 3.4.2
