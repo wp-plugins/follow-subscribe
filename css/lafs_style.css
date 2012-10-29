@@ -1,5 +1,5 @@
 .lafs_options_box_save {margin: 0px 20px 15px 20px !important;}
-.lafs_options_box_save table td{vertical-align:bottom;padding-right:15px;}
+.lafs_options_box_save table td{vertical-align:top;padding-right:15px;}
 .la_buttons_style_options_helper {margin-top:10px; margin-left:10px; color:gray;}
 .lafs_color_label_box {padding-bottom:5px;}
 .lafs_color_label{}
@@ -15,7 +15,7 @@ fieldset.lafs_fieldset label {float:left;margin:0px;padding:0px;}
 .la_clear {clear:both; height:1px;overflow:hidden;}
 .la_input {padding:0px;margin:0px;}
 .la_options_box_option_sub_box {padding:5px 0px;}
-.la_options_box_option_sub_box_cb {float:left !important;width:20px;margin:2px 0px 0px 0px!important;}
+.la_options_box_option_sub_box_cb {float:left !important;width:20px;padding:8px 0px 5px 0px;margin:0px !important;}
 .la_options_box_option_sub_box_label {float:left !important;width:500px;padding:5px 0px;}
 .la_options_box_option_sub_box_text {float:left; width:300px;}
 .la_options_box_option_sub_box_text input {width:290px;margin:0px;}
@@ -27,7 +27,7 @@ fieldset.lafs_fieldset label {float:left;margin:0px;padding:0px;}
 .lafs_options_box_fs_control {padding:10px; border-bottom:1px solid #EFEFEF;font-size:12px}
 .lafs_link{float:right !important; text-decoration: none;border:0px 0px 0px 0px !important;color:#666;}  
 .lafs_container{float:left;position:relative;width:75%;border-top:1px solid #DFDFDF; border-left: 1px solid #BFBFBF;border-right:1px solid #DFDFDF;border-bottom:1px solid #BFBFBF;background:#F7F7F7 !important;}
-.lafs_title_label{float:none !important; display:inline-block !important; width:125px !important;}
+.lafs_title_label{float:none !important; display:inline-block !important; width:230px !important;}
 .lafs_dis_input{width:20px !important;}
 .lafs_options_box_helper{color:gray !important;margin:3px!important;padding:0px!important;}
 .lafs_container_widget{float:left!important;}
