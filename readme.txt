@@ -35,7 +35,7 @@ Stable tag: 1.1
 **Manual positioning**
 
 For Manually positioning the Follow and Subscribe Sidebar Widget in your blog, place the below given code in the sidebar.php below div with id="secondary" or any other file as you see appropriate in themes folder (...\wordpress\wp-content\themes).
-1. <?php lafs_widget_function();?>
+1. `<?php lafs_widget_function();?>`
 
 
 **Benefits**
