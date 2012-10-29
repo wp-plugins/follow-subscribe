@@ -1,0 +1,35 @@
+.lafs_options_box_save {margin: 0px 20px 15px 20px !important;}
+.lafs_options_box_save table td{vertical-align:top;padding-right:15px;}
+.la_buttons_style_options_helper {margin-top:10px; margin-left:10px; color:gray;}
+.lafs_color_label_box {padding-bottom:5px;}
+.lafs_color_label{}
+.lafs_color_play_box {width:130px;float:left;}
+.lafs_color_play {width:120px;}
+.lafs_color_change_box {width:20px !important;float:left;padding:1px;border:1px solid #BFBFBF;height:18px;}
+.lafs_color_change{width:20px !important;height:18px;}
+.lafs_options_box_fs {padding:15px; border-bottom:1px dotted #DCDCD8;font-size:13px;text-align:left;}
+.lafs_options_box_fs_last {padding:15px; border-bottom:0px;font-size:13px;text-align:left;}
+fieldset.lafs_fieldset {margin:20px !important;border:1px solid #DCDCD8;background-color:#FFF;-moz-border-radius: 3px;border-radius: 3px;-webkit-border-radius: 3px;text-align:center;}
+fieldset.lafs_fieldset legend{font-size: 13px;line-height: 1; margin-left: 15px;color:#223344; text-align:left !important;}
+fieldset.lafs_fieldset label {float:left;margin:0px;padding:0px;}
+.la_clear {clear:both; height:1px;overflow:hidden;}
+.la_input {padding:0px;margin:0px;}
+.la_options_box_option_sub_box {padding:5px 0px;}
+.la_options_box_option_sub_box_cb {float:left !important;width:20px;padding:8px 0px 5px 0px;margin:0px !important;}
+.la_options_box_option_sub_box_label {float:left !important;width:500px;padding:5px 0px;}
+.la_options_box_option_sub_box_text {float:left; width:300px;}
+.la_options_box_option_sub_box_text input {width:290px;margin:0px;}
+.la_options_box_option_sub_box_helper {color: gray;padding:0px 0px 0px 0px!important;margin:0px 0px 0px 0px!important;}
+.la_options_box_option_sub_box_helper a {text-decoration: none;}
+.la_postbox {margin:0px 25px 20px 15px !important; padding-bottom: 0px !important;}
+.la_holder {font-size: 14px;font-weight: bold;line-height: 1;margin: 0;padding: 7px 10px 5px 10px;border-bottom-color: #DFDFDF;box-shadow: 0 1px 0 #FFFFFF;text-shadow: 0 1px 0 #FFFFFF;background-color: #F1F1F1;background-image: -moz-linear-gradient(center top , #F9F9F9, #ECECEC);-moz-user-select: none;border-bottom-width: 1px;border-style: solid;margin-top: 1px;border-top-width:0px;border-right-width:0px;border-left-width:0px;}
+.lafs_lang{ font-family: arial;font-size: 12px!important;padding: 15px 15px 0px 15px !important;margin-bottom:-10px;}
+.lafs_options_box_fs_control {padding:10px; border-bottom:1px solid #EFEFEF;font-size:12px}
+.lafs_link{float:right !important; text-decoration: none;border:0px 0px 0px 0px !important;color:#666;}  
+.lafs_container{float:left;position:relative;width:75%;border-top:1px solid #DFDFDF; border-left: 1px solid #BFBFBF;border-right:1px solid #DFDFDF;border-bottom:1px solid #BFBFBF;background:#F7F7F7 !important;}
+.lafs_title_label{float:none !important; display:inline-block !important; width:230px !important;}
+.lafs_dis_input{width:20px !important;}
+.lafs_options_box_helper{color:gray !important;margin:3px!important;padding:0px!important;}
+.lafs_container_widget{float:left!important;}
+.lafs_container_more{float:left!important; width:300px !important;}
+.lafs_notice_msg_save{background-color: #FFFBCC;border-color: #E6DB55;color: #555555;border-radius: 3px;border-style: solid;border-width: 1px;font-size: 12px;line-height: 19px;padding: 5px 10px;text-align: center;margin:15px 15px 15px 0px;font-weight: bold;}

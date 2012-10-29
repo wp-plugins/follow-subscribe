@@ -1,0 +1,246 @@
+<div style="margin-right: 25px;">
+	<!--Header-->
+	<h1 style="font-weight: normal;">
+	    <a href="//www.linksalpha.com/widgets/buttons" style="margin:5px 0px 15px 1px"><img src="http://lh6.ggpht.com/SprYtx0e-yjBcPypdxY8wtMZ8H4d67gD4v--2PciiGtxhiL2ItdiirKMe6FDqRCRlFU6IIIt1beZgChYyZFI" style="vertical-align: middle;"/></a>
+	    <?php _e("Follow and Subscribe"); ?>
+	</h1>
+</div>
+<div class="lafs_container" style="width:74%;">
+	<form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
+        <input type="hidden" name="lafs_options_main" id="lafs_options_main" value="true" />
+        <div class="la_holder"><?php _e("Follow and Subscribe Sidebar Widget"); ?></div>
+		<fieldset class="lafs_fieldset">
+			<legend><?php _e('Title of widget');?></legend>
+			<?php
+				$total = count($la_fs_title);
+				$i = 1;
+				$html_title = '';
+				foreach($la_fs_title as $key=>$value){
+					if($value['param_name']=='t_size'){
+						$lafsSize = 'size="1"';
+						$lafsText = 'px.';
+					} else{
+						$lafsSize = '';
+						$lafsText = '';
+					}
+					if($i == $total) {
+						$html_title .= '<div class="lafs_options_box_fs_last">';
+					} else {
+						$html_title .= '<div class="lafs_options_box_fs">';	
+					}
+					if(!array_key_exists('field_options',$value)){
+						$html_title .= '<label class="lafs_title_label" for="'.$value['option_name'].'">'.$value['field_name'].'</label>';
+						$html_title .= '<input type="text" id="'.$value['option_name'].'" '.$lafsSize.' name="'.$value['option_name'].'" value="'.${$key}.'" />'.$lafsText;
+						if(array_key_exists('help_text',$value)){
+							$html_title .= '<div class="la_options_box_option_sub_box_helper">'.$value['help_text'].' </div>';
+						}
+						$html_title .= '</div>';
+						$i++;
+					} else {
+						$html_title .= '<label class="lafs_title_label" for="'.$value['option_name'].'">'.$value['field_name'].'</label>';
+						$html_title .= '<select style="width: 50px;" id="'.$value['option_name'].'" name="'.$value['option_name'].'">';
+							foreach($value['field_options'] as $tags){
+								if($tags == ${$key}){
+									$html_title .= '<option value="'.$tags.'" selected="selected" >'.$tags.'</option>';
+								} else {
+									$html_title .= '<option value="'.$tags.'" >'.$tags.'</option>';
+								}
+							}
+						$html_title .= '</select>'; 
+						$html_title .= '</div>';
+						$i++;
+					}
+				}
+				echo $html_title;
+			?>
+		</fieldset>
+	    <fieldset class="lafs_fieldset">
+	    	<legend><?php _e("Configure URLs"); ?></legend>
+	    	<!-- Display all the options hrere -->
+	      	<?php 
+	      	$i = 1;
+	      	foreach($la_options_fs as $key=>$value) {
+	            if(lafs_endsWith($key, 'display_widget')) {
+	      			continue;
+	      		}
+	      		$this_value = $value['option_name'];
+	      		$disabled = '';
+	      		if($value['field_type'] == 'checkbox')  {
+	      			$this_value = '1';
+	      			$disabled ="checked='checked'" ."disabled='disabled'";
+	      		}
+	      		$this_div_class = 'lafs_options_box_fs';
+	            if($i == count($la_options_fs)) {
+	            	$this_div_class = 'lafs_options_box_fs_last';	
+	            }
+	  			$html   = '<div class="'.$this_div_class.'">';
+	            $html  .= '<div class="la_options_box_option_title"><label for="'.$value['option_name'].'" >'.${'icon_'.$value['field_icon']}.'&nbsp;&nbsp;'.$value['field_title'].'</label></div><br />';
+	  			$this_input_class = 'la_options_box_option_sub_box_cb';
+	            if($value['field_type'] == 'text') {
+	                $this_input_class = 'la_options_box_option_sub_box_text';
+	            }
+	            $html .= '<div class="la_options_box_option_sub_box">';
+	    		$html .= '<div class="'.$this_input_class.'"><input type="'.$value['field_type'].'" name="'.$value['option_name'].'" '.$disabled.'id="'.$value['option_name'].'" value="'.${$key}.'" /></div>';
+	            $html .= '<div class="la_options_box_option_sub_box_label"><label for="'.$value['option_name'].'" >'.$value['field_name'].'</label></div>';
+	            $html .= '<div class="la_clear"></div></div>';
+	  			$html .= '<div class="la_options_box_option_sub_box_helper">'.($value['help_text']).'</div>';
+	            $html .= '</div>';
+	  			echo $html;
+	  			$i++;
+	      	}
+	      	?>
+	   	</fieldset>
+	    <!-- Color optioms-->
+	    <fieldset class="lafs_fieldset" style="margin-top:15px;">
+	    	<legend><?php _e("Color and Size"); ?></legend>
+	      	<!-- Display all color options hrere -->
+	      	<?php
+	      	$i = 1;
+	      	$html_size = '' ;
+	      	$html_color = '';
+			foreach($la_options_widget_color as $key=>$value){
+				$this_div_class = 'lafs_options_box_fs';
+	            if($i == count($la_options_widget_color)) {
+	            	$this_div_class = 'lafs_options_box_fs_last';	
+	            }
+				if(strstr($key,'color')){
+					$html_color .= '<div class="'.$this_div_class.'">';
+					$html_color .= '<div class="lafs_color_label_box"><label class="lafs_color_label" for="'.$value['option_name'].'">'.$value['field_name'].'</label></div>';
+					$html_color .= '<div class="la_clear">&nbsp;</div>';
+					$html_color .= '<div class="lafs_color_play_box"><input class="lafs_color_play" type="text" name="'.$value['option_name'].'" id="'.$value['option_name'].'" value="'.${$key}.'" /></div>';
+					$html_color .= '<div class="lafs_color_change_box"><div class="lafs_color_change" style="background:'.${$key}.';" id="'.$value['option_name'].'_span">&nbsp;</div></div>';
+					$html_color .= '<div class="la_clear">&nbsp;</div>';
+					$html_color .= '</div>';
+				} else {
+					$html_size .= '<div class="'.$this_div_class.'">';
+					$html_size .= '<div class="lafs_color_label_box"><label class="lafs_color_label" for="'.$value['option_name'].'">'.$value['field_name'].'</label></div>';
+					$html_size .= '<div class="la_clear">&nbsp;</div>';
+					$html_size .= '<div class="laehco_fs_color_play_box">';
+				 	if($value["field_type"]=="select"){
+					$html_size .= '<select name="'.$value['option_name'].'" id="'.$value['option_name'].'">';
+					foreach($value['field_options'] as $value) {
+						if($value == $la_opt_fs_size) {
+							$html_size .= '<option value="'.$value.'" selected="selected">'.$value.'</option>';	
+						} else {
+							$html_size .= '<option value="'.$value.'">'.$value.'</option>';
+						}
+					}			    
+					$html_size .= ' </select></div>';
+					}else{
+					$html_size .= '<div class="laehco_fs_color_play_box"><input  type="text" size="4" name="'.$value['option_name'].'" id="'.$value['option_name'].'" value="'.${$key}.'" />px.</div>';
+					
+					}
+					$html_size .= '<div class="la_clear">&nbsp;</div>';
+					$html_size .= '</div>';
+			 	}	
+			 	$i++;
+			 }	
+			 echo $html_color;
+			 echo $html_size;
+			?>
+		</fieldset>
+	    <fieldset class="lafs_fieldset" style="margin-top: 15px;">
+	      <legend><?php _e("Language options"); ?></legend>
+		  <!--Google Plus -->
+	      <div class="lafs_lang" ><label  for="la-html-widget-lang-googleplus"><?php _e("Google Plus"); ?></label><br /></div>
+	        <div class="lafs_options_box_fs">
+		        <select name="la-html-widget-lang-googleplus" id="la-html-widget-lang-googleplus">
+		            <?php
+		                $langs = lafs_googleplus_langs();
+		                asort($langs);
+		                foreach($langs as $key=>$val) {
+		                    if($la_opt_lang_googleplus == $key) {
+		                        echo '<option value="'.htmlentities($key).'" selected>'.htmlentities($val).'</option>';
+		                    } else{
+		                        echo '<option value="'.htmlentities($key).'">'.htmlentities($val).'</option>';
+		                    }
+		                }
+		            ?>
+		        </select>
+	        </div>
+	    	<!-- facebook -->
+	        <div class="lafs_lang"><label for="la-html-widget-lang-facebooklike"><?php _e("Facebook Like"); ?></label><br /></div>
+	        <div class="lafs_options_box_fs">
+		        <select name="la-html-widget-lang-facebooklike" id="la-html-widget-lang-facebooklike">
+		            <?php
+		                $langs = lafs_fb_langs();
+		                asort($langs);
+		                foreach($langs as $key=>$val) {
+		                    if($la_opt_lang_facebooklike == $key) {
+		                        echo '<option value="'.htmlentities($key).'" selected>'.htmlentities($val).'</option>';
+		                    } else{
+		                        echo '<option value="'.htmlentities($key).'">'.htmlentities($val).'</option>';
+		                    }
+		                }
+		            ?>
+		        </select>
+	        </div>
+			<!-- twitter -->
+	        <div class="lafs_lang"><label for="la-html-widget-lang-twitter"><?php _e("Twitter"); ?></label><br /></div>
+	        <div class="lafs_options_box_fs">
+		        <select name="la-html-widget-lang-twitter" id="la-html-widget-lang-twitter">
+		            <?php
+		                $langs = lafs_twitter_langs();
+		                asort($langs);
+		                foreach($langs as $key=>$val) {
+		                    if($la_opt_lang_twitter == $key) {
+		                        echo '<option value="'.htmlentities($key).'" selected>'.htmlentities($val).'</option>';
+		                    } else{
+		                        echo '<option value="'.htmlentities($key).'">'.htmlentities($val).'</option>';
+		                    }
+		                }
+		            ?>
+		        </select>
+	        </div>
+	        <div class="lafs_lang"><label for="la-html-widget-lang-xing"><?php _e("Xing"); ?></label><br /></div>
+	        <div class="lafs_options_box_fs_last">
+		        <select name="la-html-widget-lang-xing" id="la-html-widget-lang-xing">
+		            <?php
+		               foreach($lafs_options_language as $key=>$value){
+		               	 if($value['param_name']=='xinglang'){
+		               		$xing_lang_option='';
+		               		foreach($value['field_options'] as $keys=>$values) {
+		               			if(${$key}==$keys) {
+		               				echo '<option value="'.$keys.'" selected="selected">'.$values.'</option> ';
+		               			} else{
+		               				echo '<option value="'.$keys.'">'.$values. '</option>';
+		               			}
+		               		}
+		               	 }
+		               }
+		            ?>
+		        </select>
+	        </div>
+	    </fieldset>
+        <div class="lafs_options_box_save">
+        	<table>
+        		<tr>
+        			<td style="padding-bottom:5px;vertial-align:top !important;">
+        				<input type="submit"  name="option_value" class="button-primary" value="<?php _e('Save Changes'); ?>" />			
+        			</td>
+        			<td style="vertial-align:top !important;">
+        				<div style="display:inline-block !important; float:left !important;" class="linksalpha-email-button" id="linksalpha_tag_192304089" data-url="http://www.linksalpha.com" data-text="LinksAlpha - Making Social Media Easy!" data-desc="LinksAlpha provides quick and easy way for companies and users to connect and share on social web. Using LinksAlpha tools, you can integrate Social Media Buttons into your website, Publish your Website Content Automatically to Social Media Sites, and Track Social Media Profiles, all from one place." data-image="http://www.linksalpha.com/images/LALOGO_s175.png"></div>
+						<script type="text/javascript" src="http://www.linksalpha.com/social/loader?tag_id=linksalpha_tag_192304089&fblikefont=arial&vkontakte=1&livejournal=1&twitter=1&xinglang=de&linkedin=1&tumblr=1&hyves=1&fblikelang=en_US&delicious=1&twitterw=110&gpluslang=en-US&gmail=1&weibo=1&posterous=1&xing=1&sonico=1&twitterlang=en&pinterest=1&myspace=1&msn=1&print=1&mailru=1&email=1&counters=googleplus%2Cfacebook%2Ctwitter&reddit=1&hotmail=1&netlog=1&twitterrelated=linksalpha&aolmail=1&link=http%3A%2F%2Fwww.linksalpha.com&diigo=1&evernote=1&digg=1&yahoomail=1&yammer=1&stumbleupon=1&instapaper=1&facebookw=90&googleplus=1&fblikeverb=like&fblikeref=linksalpha&halign=left&v=2&facebook=1&button=googleplus%2Cfacebook%2Ctwitter&identica=1"></script>			
+        			</td>
+        		</tr>
+        	</table>
+        </div>
+    </form>
+</div>
+
+<!-- LinksAlpha widgets -->
+<div style="width:300px;margin-left: 15px;" class="lafs_container_widget">
+	<div>
+		<div id="linksalpha_tag_26922" data-fs="googleplus=&amp;facebook=&amp;twitter=linksalpha&amp;pinterest=https%3A%2F%2Fpinterest.com%2Flinksalpha%2Fplugins&amp;stumbleupon=http%3A%2F%2Fwww.stumbleupon.com%2Fsu%2F2wOTSh%2F%3ANVU5rq%21u%3AQxI%400x%24O%2Fwww.linksalpha.com%2F&amp;linkedin=http%3A%2F%2Fwww.linkedin.com%2Fcompany%2Flinksalpha.com&amp;foursquare=https%3A%2F%2Ffoursquare.com%2Fchipotletweets&amp;aboutme=&amp;xing=https%3A%2F%2Fwww.xing.com%2Fprofile%2FVivek_Puri&amp;youtube=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D-qlpqL9J5X4&amp;rss=&amp;row1=%23ffffff&amp;row2=%23F5FCFE&amp;row3=%23EEF9FD&amp;row4=%23D8E6EB&amp;width=300&amp;margin=3&amp;gpluslang=&amp;fbsendlang=&amp;twitterlang=&amp;xinglang=en&amp;fs_url=http%3A%2F%2Fwww.linksalpha.com"><div id="linksalpha_fs_container_300" style="width:300px!important;margin:0px 0px 3px 0px !important;  "></div>
+		<script type="text/javascript" src="//linksalpha.com/social/loader_fs?tag_id=linksalpha_tag_26922&amp;twitter=linksalpha&amp;pinterest=1&amp;stumbleupon=1&amp;linkedin=1&amp;foursquare=1&amp;xing=1&amp;youtube=1&amp;row1=%23ffffff&amp;row2=%23F5FCFE&amp;row3=%23EEF9FD&amp;row4=%23D8E6EB&amp;width=300&amp;margin=3&amp;gpluslang=&amp;fbsendlang=&amp;twitterlang=&amp;xinglang=en&amp;fs_url=http%3A%2F%2Fwww.linksalpha.com"></script>
+		</div>
+    </div>
+</div>
+<!-- More plugins -->
+<div style="width:300px;margin:15px auto auto 15px;" class="lafs_container">
+	<div class="la_holder"> <?php _e('Get more plugins'); ?> </div>
+	<div class="lafs_options_box_fs"> <a style="text-decoration: none;" href="http://wordpress.org/extend/plugins/social-discussions/screenshots/">Social Discussions</a> </div>
+	<div class="lafs_options_box_fs"> <a style="text-decoration: none;" href="http://wordpress.org/extend/plugins/network-publisher/screenshots/">Network Publisher</a> </div>
+	<div class="lafs_options_box_fs_last"><a style="text-decoration: none;" href="http://wordpress.org/extend/plugins/1-click-retweetsharelike/screenshots/">1-click Retweet/Share/Like</a></div>
+</div>	
+
